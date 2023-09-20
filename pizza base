@@ -1,0 +1,60 @@
+package Pizza.Base.Especialidades;
+
+import Pizza.Base.Pizza;
+import Pizza.Base.Topping;
+
+public class Especialidades extends Pizza {
+
+    public Especialidades(String name, String size, Topping... toppings) {
+        super(name, size, toppings);
+    }
+
+    public static final String PEPPERONI_NAME = "Pepperoni";
+    public static final String HAWAIIAN_NAME = "Hawaiana";
+    public static final String VEGETARIAN_NAME = "Vegetariana";
+    public static final String SUPREME_NAME = "Suprema";
+    public static final String WHITE_NAME = "Blanca";
+
+    public static final double PEPPERONI_BASE_PRICE = 40;
+    public static final double HAWAIIAN_BASE_PRICE = 55;
+    public static final double VEGETARIAN_BASE_PRICE = 50;
+    public static final double SUPREME_BASE_PRICE = 70;
+    public static final double WHITE_BASE_PRICE = 35;
+
+    public static final String SMALL_SIZE = "Pequeña";
+    public static final String MEDIUM_SIZE = "Mediana";
+    public static final String LARGE_SIZE = "Grande";
+
+    @Override
+    protected double calculatePrice(String pizzaName, String pizzaSize) {
+        double basePrice = getBasePrice(pizzaName);
+        
+        switch (pizzaSize) {
+            case SMALL_SIZE:
+                return basePrice;
+            case MEDIUM_SIZE:
+                return basePrice * 1.2;
+            case LARGE_SIZE:
+                return basePrice * 1.35;
+            default:b
+                throw new IllegalArgumentException("Tamaño de pizza no válido: " + pizzaSize);
+        }
+    }
+
+    private double getBasePrice(String pizzaName) {
+        switch (pizzaName) {
+            case PEPPERONI_NAME:
+                return PEPPERONI_BASE_PRICE;
+            case HAWAIIAN_NAME:
+                return HAWAIIAN_BASE_PRICE;
+            case VEGETARIAN_NAME:
+                return VEGETARIAN_BASE_PRICE;
+            case SUPREME_NAME:
+                return SUPREME_BASE_PRICE;
+            case WHITE_NAME:
+                return WHITE_BASE_PRICE;
+            default:
+                throw new IllegalArgumentException("Nombre de pizza no válido: " + pizzaName);
+        }
+    }
+}
